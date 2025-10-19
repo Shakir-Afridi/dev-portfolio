@@ -2,7 +2,7 @@ import { resumeData } from "../data/resumeData";
 
 export default function About() {
     return (
-        <section id="education" className="px-6 py-12 max-w-5xl mx-auto">
+        <section id="education" className="px-6 py-12 max-w-7xl mx-auto">
             <h2 className="text-3xl font-semibold mb-6 text-cyan-400">
                 Education
             </h2>

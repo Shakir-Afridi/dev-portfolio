@@ -4,7 +4,7 @@ export default function Hero() {
     return (
         <section
             id="about"
-            className="flex flex-col justify-center items-start px-6 max-w-5xl mx-auto"
+            className="flex flex-col justify-center items-start max-w-7xl mx-auto px-6 py-16"
         >
             <h1 className="text-5xl sm:text-6xl font-extrabold text-cyan-400">
                 {resumeData.name}
@@ -12,7 +12,7 @@ export default function Hero() {
             <p className="mt-4 text-xl text-slate-300">
                 {resumeData.title} — {resumeData.location}
             </p>
-            <p className="mt-4 max-w-2xl text-slate-400">
+            <p className="mt-4 max-w-4xl text-slate-400">
                 {resumeData.summary}
             </p>
             <div className="mt-6 flex space-x-4">

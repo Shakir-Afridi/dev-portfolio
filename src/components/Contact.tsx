@@ -5,9 +5,9 @@ export default function Contact() {
     return (
         <section
             id="contact"
-            className="bg-gradient-to-b py-16 px-6 md:px-12 lg:px-24"
+            className="bg-gradient-to-b max-w-7xl mx-auto px-6 py-16"
         >
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                 {/* Contact Info */}
                 <div>
                     <h2 className="text-4xl font-bold text-white mb-6">

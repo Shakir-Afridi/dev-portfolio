@@ -1,6 +1,6 @@
 import Hero from "@/components/Hero";
 import Education from "@/components/Education";
-import Experience from "@/components/Experience";
+import ExperienceNew from "@/components/ExperienceNew";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -10,7 +10,7 @@ export default function Page() {
         <main>
             <Hero />
             <Education />
-            <Experience />
+            <ExperienceNew />
             <Projects />
             <Contact />
             <Footer />
