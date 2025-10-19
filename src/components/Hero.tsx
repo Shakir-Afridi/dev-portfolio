@@ -10,7 +10,7 @@ export default function Hero() {
         >
             {/* Name */}
             <motion.h1
-                className="text-5xl sm:text-6xl font-extrabold text-cyan-400"
+                className="text-4xl sm:text-5xl font-extrabold text-cyan-400"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -25,19 +25,32 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
-                {resumeData.title} — {resumeData.location}
+                {resumeData.title}
+            </motion.p>
+            <motion.p
+                className="mt-4 text-xl text-slate-300"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            >
+                {resumeData.location}
             </motion.p>
 
             {/* Summary */}
-            <motion.p
+            <motion.div
                 className="mt-4 max-w-4xl text-slate-400"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             >
-                {resumeData.summary}
-            </motion.p>
-
+                {resumeData.summary
+                    ?.split("\n")
+                    .map((para: string, idx: number) => (
+                        <p key={idx} className={`${!para ? "p-1" : ""}`}>
+                            {para?.trim()}
+                        </p>
+                    ))}
+            </motion.div>
             {/* Buttons */}
             <motion.div
                 className="mt-6 flex space-x-4"
@@ -60,6 +73,50 @@ export default function Hero() {
                     LinkedIn
                 </a>
             </motion.div>
+            {resumeData.technicalExpertize?.length > 0 ||
+            resumeData.engineeringValues?.length > 0 ? (
+                <div className="flex flex-col md:flex-row justify-between gap-4 py-12 w-full">
+                    {resumeData.technicalExpertize?.length > 0 && (
+                        <motion.div
+                            className="bg-cyan-900 text-white rounded-2xl p-6 md:w-1/2 w-full shadow-lg"
+                            initial={{ opacity: 0, x: -100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -100 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            viewport={{ once: false, amount: 0.3 }}
+                        >
+                            <h3 className="text-2xl font-bold mb-2">
+                                🔧 Technical Expertise:
+                            </h3>
+                            {resumeData.technicalExpertize.map((Item, idx) => (
+                                <p key={idx} className="text-gray-300">
+                                    🔹 {Item}
+                                </p>
+                            ))}
+                        </motion.div>
+                    )}
+
+                    {resumeData.engineeringValues?.length > 0 && (
+                        <motion.div
+                            className="bg-gray-800 text-white rounded-2xl p-6 md:w-1/2 w-full shadow-lg"
+                            initial={{ opacity: 0, x: 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 100 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            viewport={{ once: false, amount: 0.3 }}
+                        >
+                            <h3 className="text-2xl font-bold mb-2">
+                                🧠 Engineering Values:
+                            </h3>
+                            {resumeData.engineeringValues.map((Item, idx) => (
+                                <p key={idx} className="text-gray-300">
+                                    🔹 {Item}
+                                </p>
+                            ))}
+                        </motion.div>
+                    )}
+                </div>
+            ) : null}
         </section>
     );
 }

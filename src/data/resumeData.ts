@@ -18,9 +18,36 @@ export type Project = {
     tech?: string[];
 };
 
-export const resumeData = {
+export type Education = {
+    degree: string;
+    institution: string;
+    start: string;
+    end: string;
+    gpa: string;
+    notes: string[];
+};
+
+export type ResumeData = {
+    name: string;
+    title: string;
+    location: string;
+    phone: string;
+    email: string;
+    technicalExpertize: string[];
+    engineeringValues: string[];
+    contactUsDesc: string;
+    linkedin: string;
+    summary: string;
+    education: Education[];
+    skills: string[];
+    experience: ExperienceItem[];
+    projects: Project[];
+    achievements: string[];
+};
+
+export const resumeData: ResumeData = {
     name: "Shakir Ullah",
-    title: "Senior Software Engineer — React.js & Node.js",
+    title: "🚀 Senior Software Engineer | Full-Stack JavaScript Developer | React, Node.js, TypeScript",
     location: "Lahore, Punjab, Pakistan",
     phone: "+92 333 6861392",
     email: "shakir201650@gmail.com",
@@ -28,7 +55,19 @@ export const resumeData = {
         "We’d love to hear from you. Whether you have a question about services, pricing, or anything else — our team is ready to answer all your questions.",
     linkedin: "https://www.linkedin.com/in/shakir-ullah-201650/",
     summary:
-        "With over 7 years of hands-on experience in software engineering, I specialize in designing, developing, and scaling modern web applications that are performance-optimized, user-centric, and maintainable. My core stack includes ReactJS, Node.js, and TypeScript, with experience across the full product lifecycle. I’ve worked on enterprise-scale systems, customer-facing platforms, and internal tools, delivering high-quality solutions that improve business efficiency and user engagement.",
+        "With over 7 years of hands-on experience in software engineering, I specialize in designing, developing, and scaling modern web applications that are performance-optimized, user-centric, and maintainable. My core stack includes ReactJS, Node.js, and TypeScript, with experience across the full product lifecycle. \n\nI’ve worked on enterprise-scale systems, customer-facing platforms, and internal tools, delivering high-quality solutions that improve business efficiency and user engagement.",
+    technicalExpertize: [
+        "Frontend: React.js, Redux, Angular, HTML5, CSS3, SCSS, Tailwind",
+        "Backend: Node.js, Express.js, REST APIs, GraphQL",
+        "Languages: JavaScript (ES6+), TypeScript",
+        "Tools & DevOps: Git, Docker, CI/CD, AWS, Jira, Agile/Scrum",
+    ],
+    engineeringValues: [
+        " Clean, maintainable, and well-documented code",
+        "Focus on scalability and performance",
+        "Collaborative mindset and strong communication",
+        "Continuous learning and improvement",
+    ],
     education: [
         {
             degree: "Bachelor of Computer Science",
@@ -110,7 +149,7 @@ export const resumeData = {
             ],
             tech: ["React.js", "Express.js"],
         },
-    ] as ExperienceItem[],
+    ],
     projects: [
         {
             title: "CLM - Customer Lifecycle Management (Onboarding Platform)",
@@ -247,7 +286,7 @@ export const resumeData = {
             outcome: "",
             tech: ["React.js", "JavaScript", "Bootstrap", "CSS"],
         },
-    ] as Project[],
+    ],
     achievements: [
         "Dean’s Honor Award, NAMAL University",
         "OWASP Top 10 Web Application Vulnerabilities Course – Aria Systems",
