@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "framer-motion";
 import { resumeData } from "../data/resumeData";
 
 export default function Hero() {
@@ -6,16 +8,43 @@ export default function Hero() {
             id="about"
             className="flex flex-col justify-center items-start max-w-7xl mx-auto px-6 py-16"
         >
-            <h1 className="text-5xl sm:text-6xl font-extrabold text-cyan-400">
+            {/* Name */}
+            <motion.h1
+                className="text-5xl sm:text-6xl font-extrabold text-cyan-400"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+            >
                 {resumeData.name}
-            </h1>
-            <p className="mt-4 text-xl text-slate-300">
+            </motion.h1>
+
+            {/* Title + Location */}
+            <motion.p
+                className="mt-4 text-xl text-slate-300"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            >
                 {resumeData.title} — {resumeData.location}
-            </p>
-            <p className="mt-4 max-w-4xl text-slate-400">
+            </motion.p>
+
+            {/* Summary */}
+            <motion.p
+                className="mt-4 max-w-4xl text-slate-400"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            >
                 {resumeData.summary}
-            </p>
-            <div className="mt-6 flex space-x-4">
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div
+                className="mt-6 flex space-x-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            >
                 <a
                     className="px-4 py-2 bg-cyan-500 text-white rounded-lg shadow hover:bg-cyan-600 transition"
                     href={`mailto:${resumeData.email}`}
@@ -30,7 +59,7 @@ export default function Hero() {
                 >
                     LinkedIn
                 </a>
-            </div>
+            </motion.div>
         </section>
     );
 }
