@@ -20,12 +20,12 @@ export type Project = {
 
 export const resumeData = {
     name: "Shakir Ullah",
-    title: "Senior Software Engineer — React & TypeScript",
+    title: "Senior Software Engineer — React.js & Node.js",
     location: "Lahore, Punjab, Pakistan",
     phone: "+92 333 6861392",
     email: "shakir201650@gmail.com",
     contactUsDesc:
-        "  We’d love to hear from you. Whether you have a question about services, pricing, or anything else — our team is ready to answer all your questions.",
+        "We’d love to hear from you. Whether you have a question about services, pricing, or anything else — our team is ready to answer all your questions.",
     linkedin: "https://www.linkedin.com/in/shakir-ullah-201650/",
     summary:
         "With over 7 years of hands-on experience in software engineering, I specialize in designing, developing, and scaling modern web applications that are performance-optimized, user-centric, and maintainable. My core stack includes ReactJS, Node.js, and TypeScript, with experience across the full product lifecycle. I’ve worked on enterprise-scale systems, customer-facing platforms, and internal tools, delivering high-quality solutions that improve business efficiency and user engagement.",
