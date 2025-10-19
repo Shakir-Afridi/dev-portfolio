@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { resumeData } from "../data/resumeData";
+import { Project, resumeData } from "../data/resumeData";
 
 export default function Projects() {
-    const [selectedProject, setSelectedProject] = useState<any | null>(null);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(
+        null
+    );
 
     return (
         <section id="projects" className="max-w-7xl mx-auto px-6 py-16">
