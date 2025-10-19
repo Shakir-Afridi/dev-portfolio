@@ -2,7 +2,7 @@ import { resumeData } from "../data/resumeData";
 
 export default function Hero() {
     return (
-        <section className="min-h-[80vh] flex flex-col justify-center items-start px-6 max-w-5xl mx-auto">
+        <section className="flex flex-col justify-center items-start px-6 max-w-5xl mx-auto">
             <h1 className="text-5xl sm:text-6xl font-extrabold text-cyan-400">
                 {resumeData.name}
             </h1>
