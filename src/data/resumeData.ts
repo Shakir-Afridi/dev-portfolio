@@ -1,7 +1,7 @@
 export type ExperienceItem = {
     role: string;
     company: string;
-    start: string; // ISO or human readable
+    start: string;
     end?: string;
     location?: string;
     bullets: string[];
