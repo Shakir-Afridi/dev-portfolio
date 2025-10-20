@@ -1,11 +1,13 @@
 "use client";
+
 import { motion, useInView, useAnimation } from "framer-motion";
 import { useRef, useEffect } from "react";
+import { GraduationCap, MapPin, Calendar } from "lucide-react";
 import { resumeData } from "../data/resumeData";
 
 export default function Education() {
     const ref = useRef(null);
-    const isInView = useInView(ref, { amount: 0.5 });
+    const isInView = useInView(ref, { amount: 0.3 });
     const controls = useAnimation();
 
     useEffect(() => {
@@ -19,11 +21,11 @@ export default function Education() {
     return (
         <section
             id="education"
-            className="px-6 py-12 max-w-7xl mx-auto"
+            className="max-w-7xl mx-auto px-6 py-16"
             ref={ref}
         >
             <motion.h2
-                className="text-3xl font-semibold mb-6 text-cyan-400"
+                className="text-4xl font-bold mb-10 text-cyan-400 text-center"
                 variants={{
                     hidden: { opacity: 0, y: 40 },
                     visible: { opacity: 1, y: 0 },
@@ -35,11 +37,11 @@ export default function Education() {
                 Education
             </motion.h2>
 
-            <ul>
-                {resumeData.education.map((e, i) => (
-                    <motion.li
+            <div className="relative border-slate-700 space-y-8">
+                {resumeData.education.map((edu, i) => (
+                    <motion.div
                         key={i}
-                        className="mt-4"
+                        className="relative"
                         variants={{
                             hidden: { opacity: 0, y: 40 },
                             visible: { opacity: 1, y: 0 },
@@ -52,15 +54,52 @@ export default function Education() {
                             ease: "easeOut",
                         }}
                     >
-                        <div className="font-semibold text-slate-100">
-                            {e.degree} — {e.institution}
+                        {/* Education Card */}
+                        <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:shadow-cyan-400/10 transition-all duration-300">
+                            <div className="flex items-center gap-3 mb-2">
+                                <GraduationCap className="w-5 h-5 text-cyan-400" />
+                                <h3 className="text-lg font-semibold text-slate-100">
+                                    {edu.degree}
+                                </h3>
+                            </div>
+                            <p className="text-slate-300 font-medium mb-2">
+                                {edu.institution}
+                            </p>
+
+                            <div className="flex items-center gap-4 text-sm text-slate-400 mb-3">
+                                <div className="flex items-center gap-1">
+                                    <Calendar className="w-4 h-4" />
+                                    <span>
+                                        {edu.start} — {edu.end}
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <MapPin className="w-4 h-4" />
+                                    <span>{edu.location}</span>
+                                </div>
+                            </div>
+
+                            <p className="text-sm text-slate-400 leading-relaxed">
+                                {edu.description}
+                            </p>
+
+                            {edu.achievements && (
+                                <ul className="mt-3 text-sm text-slate-300 list-disc list-inside space-y-1">
+                                    {edu.achievements.map((a, idx) => (
+                                        <li key={idx}>{a}</li>
+                                    ))}
+                                </ul>
+                            )}
+
+                            {edu.gpa && (
+                                <p className="mt-3 text-sm font-semibold text-cyan-400">
+                                    GPA: {edu.gpa}
+                                </p>
+                            )}
                         </div>
-                        <div className="text-sm text-slate-400">
-                            {e.start} — {e.end} • GPA: {e.gpa}
-                        </div>
-                    </motion.li>
+                    </motion.div>
                 ))}
-            </ul>
+            </div>
         </section>
     );
 }

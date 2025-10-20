@@ -16,6 +16,7 @@ export type Project = {
     contributions: string[];
     outcome?: string;
     tech?: string[];
+    year?: string;
 };
 
 export type Education = {
@@ -24,7 +25,9 @@ export type Education = {
     start: string;
     end: string;
     gpa: string;
-    notes: string[];
+    description: string;
+    location: string;
+    achievements: string[];
 };
 
 export type ResumeData = {
@@ -33,6 +36,10 @@ export type ResumeData = {
     location: string;
     phone: string;
     email: string;
+    socials: {
+        github?: string;
+        linkedin?: string;
+    };
     technicalExpertize: string[];
     engineeringValues: string[];
     contactUsDesc: string;
@@ -51,6 +58,10 @@ export const resumeData: ResumeData = {
     location: "Lahore, Punjab, Pakistan",
     phone: "+92 333 6861392",
     email: "shakir201650@gmail.com",
+    socials: {
+        github: "https://github.com/Shakir-Afridi",
+        linkedin: "https://www.linkedin.com/in/shakir-ullah-201650",
+    },
     contactUsDesc:
         "We’d love to hear from you. Whether you have a question about services, pricing, or anything else — our team is ready to answer all your questions.",
     linkedin: "https://www.linkedin.com/in/shakir-ullah-201650/",
@@ -75,7 +86,10 @@ export const resumeData: ResumeData = {
             start: "2014-09-15",
             end: "2018-05-25",
             gpa: "4.0/4.0",
-            notes: [
+            location: "Mianwali, Pubjab, Pakistan",
+            description:
+                "Focused on developing strong technical and analytical skills through hands-on projects, research, and collaborative learning.",
+            achievements: [
                 "Dean’s Honor Award",
                 "Member of Namal Society for Social Impact",
             ],
@@ -155,6 +169,7 @@ export const resumeData: ResumeData = {
             title: "CLM - Customer Lifecycle Management (Onboarding Platform)",
             company: "RAKBANK",
             period: "09/2024 – Present",
+            year: "2024",
             summary:
                 "CLM (Customer Lifecycle Management) is a digital onboarding platform built for one of the UAE’s leading banks to streamline the manual onboarding process of individuals and entities. The application ensures regulatory compliance, data integrity, and seamless internal workflows across departments. \n I’m responsible for building and maintaining key features in the CLM platform using React.js, leveraging a custom design system built with Material UI and following the Atomic Design methodology. The application integrates maker-checker workflows and role-based access, ensuring secure and auditable onboarding.",
             contributions: [
@@ -172,6 +187,7 @@ export const resumeData: ResumeData = {
             title: "Custom Design System (React + Material UI)",
             company: "RAKBANK",
             period: "08/2024 – Present",
+            year: "2024",
             summary:
                 "Contributed to the development and maintenance of a private centralized design system for RAKBANK’s frontend applications. The system adheres to the Atomic Design architecture and offers a reusable set of accessible UI components, styled with Material UI and tailored to the bank’s design language.",
             tech: ["React.js", "TypeScript", "Material UI"],
@@ -188,6 +204,7 @@ export const resumeData: ResumeData = {
             title: "Web Sales Solution (Multi-Tenant)",
             company: "Digitify",
             period: "02/2022 – Present",
+            year: "2022",
             summary:
                 "Designed and developed a multi-tenant web sales solution for Jysk Fynske Medier (JFM)—one of Denmark’s leading regional media groups. The platform supports multiple digital newspaper brands under JFM’s umbrella, enabling each title to maintain a distinct identity and user experience while sharing a unified codebase. \nThe solution dynamically applies brand-specific themes, styles, and configurations based on the deployment URL, allowing seamless customization for each title (e.g., news outlets, subscription portals).",
             tech: ["React.js", "TypeScript", "Node.js", "Material UI", "AWS"],
@@ -206,6 +223,7 @@ export const resumeData: ResumeData = {
             title: "GoBig AI-Powered Blog Platform",
             company: "Independent Project",
             period: "2023",
+            year: "2023",
             summary:
                 "Developed a full-stack AI-driven blog generation platform that dynamically creates and serves region-specific content based on user location. On each visit, the application detects the user’s country name, code, and language. If the country is not in the database, the backend fetches real-time Google Trends data using SerpApi, generates localized blog content with OpenAI and DeepSeek, and creates matching visuals using Leonardo.ai. The generated blogs are stored for future access, enabling automated, region-aware content publishing.",
             tech: [

@@ -3,10 +3,19 @@ import { motion } from "framer-motion";
 import { resumeData } from "../data/resumeData";
 
 export default function Hero() {
+    const downloadResume = () => {
+        const link = document.createElement("a");
+        link.href = "/files/ShakirUllah_Resume.pdf";
+        link.download = `ShakirUllah_Resume.pdf`;
+        link.target = "_blank";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
     return (
         <section
             id="about"
-            className="flex flex-col justify-center items-start max-w-7xl mx-auto px-6 py-16"
+            className="flex flex-col justify-center items-center max-w-7xl mx-auto px-6 py-8"
         >
             {/* Name */}
             <motion.h1
@@ -38,7 +47,7 @@ export default function Hero() {
 
             {/* Summary */}
             <motion.div
-                className="mt-4 max-w-4xl text-slate-400"
+                className="mt-4 max-w-4xl text-slate-400 items-center"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
@@ -46,32 +55,56 @@ export default function Hero() {
                 {resumeData.summary
                     ?.split("\n")
                     .map((para: string, idx: number) => (
-                        <p key={idx} className={`${!para ? "p-1" : ""}`}>
+                        <motion.p
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                                duration: 0.8,
+                                delay: 0.2,
+                                ease: "easeOut",
+                            }}
+                            key={idx}
+                            className={`mt-4 text-slate-300 text-center ${
+                                !para ? "p-0" : ""
+                            }`}
+                        >
                             {para?.trim()}
-                        </p>
+                        </motion.p>
                     ))}
             </motion.div>
             {/* Buttons */}
             <motion.div
-                className="mt-6 flex space-x-4"
+                className="mt-6 mb-6 flex space-x-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             >
-                <a
-                    className="px-4 py-2 bg-cyan-500 text-white rounded-lg shadow hover:bg-cyan-600 transition"
+                <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-4 py-2 border border-cyan-500 text-cyan-400 rounded-lg hover:bg-cyan-500/10 font-semibold transition-all shadow-md hover:shadow-cyan-400/30"
                     href={`mailto:${resumeData.email}`}
                 >
                     Email
-                </a>
-                <a
-                    className="px-4 py-2 border border-cyan-500 text-cyan-400 rounded-lg hover:bg-cyan-500/10 transition"
+                </motion.a>
+                <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-4 py-2 border border-cyan-500 text-cyan-400 rounded-lg hover:bg-cyan-500/10 font-semibold transition-all shadow-md hover:shadow-cyan-400/30"
                     href={resumeData.linkedin}
                     target="_blank"
                     rel="noreferrer"
                 >
                     LinkedIn
-                </a>
+                </motion.a>
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={downloadResume}
+                    className="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-600 hover:cursor-pointer text-white font-semibold transition-all shadow-md hover:shadow-cyan-400/30"
+                >
+                    Download Resume
+                </motion.button>
             </motion.div>
             {resumeData.technicalExpertize?.length > 0 ||
             resumeData.engineeringValues?.length > 0 ? (

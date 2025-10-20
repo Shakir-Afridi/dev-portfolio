@@ -1,6 +1,8 @@
 "use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Eye, Users, Activity } from "lucide-react";
 import { Project, resumeData } from "../data/resumeData";
 
 export default function Projects() {
@@ -10,37 +12,81 @@ export default function Projects() {
 
     return (
         <section id="projects" className="max-w-7xl mx-auto px-6 py-16">
-            <h2 className="text-4xl font-bold text-cyan-400 mb-12">Projects</h2>
+            <h2 className="text-4xl font-bold text-cyan-400 mb-12 text-center">
+                Projects
+            </h2>
 
             {/* Projects Grid */}
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                 {resumeData.projects.map((p, i) => (
                     <motion.div
                         key={i}
-                        className="p-6 rounded-xl bg-slate-800/50 border border-slate-700 shadow-lg hover:shadow-cyan-400/20 cursor-pointer transition-all"
-                        initial={{ opacity: 0, y: 50 }}
+                        className="group bg-slate-900/60 rounded-2xl overflow-hidden border border-slate-800 shadow-lg hover:shadow-cyan-400/20 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                        initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: i * 0.15 }}
                         viewport={{ once: true }}
                         onClick={() => setSelectedProject(p)}
                     >
-                        <h3 className="text-xl font-semibold text-slate-100 mb-1">
-                            {p.title}
-                        </h3>
-                        <div className="text-sm text-slate-400 mb-2">
-                            {p.company} • {p.period}
+                        {/* Header Section */}
+                        <div className="relative p-6 bg-gradient-to-b from-slate-800 to-slate-900 flex flex-col items-center justify-center text-center">
+                            <div className="mb-4 text-cyan-400">
+                                <Activity size={42} />
+                            </div>
+                            <h3 className="text-lg font-semibold text-cyan-300 mb-1">
+                                {p.title}
+                            </h3>
                         </div>
-                        <p className="text-slate-300 line-clamp-3">
-                            {p.summary}
-                        </p>
-                        <div className="mt-3 text-sm text-cyan-400">
-                            {p?.tech?.join(", ")}
+
+                        {/* Body Section */}
+                        <div className="p-6">
+                            <div className="flex justify-between items-center mb-3">
+                                <h4 className="text-base font-semibold text-slate-100">
+                                    {p.title}
+                                </h4>
+                                <span className="text-xs text-slate-500">
+                                    {p.year || p.period}
+                                </span>
+                            </div>
+
+                            <p className="text-slate-400 text-sm line-clamp-3 mb-4">
+                                {p.summary}
+                            </p>
+
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-2 mb-5">
+                                {p.tech
+                                    ?.slice(0, 3)
+                                    .map((tech: string, idx: number) => (
+                                        <span
+                                            key={idx}
+                                            className="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded-md"
+                                        >
+                                            {tech}
+                                        </span>
+                                    ))}
+                                {p.tech && p.tech.length > 3 && (
+                                    <span className="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded-md">
+                                        +{p.tech.length - 3} more
+                                    </span>
+                                )}
+                            </div>
+
+                            <div className="flex justify-between border-t border-slate-800 pt-4 text-slate-400 text-xs" />
+
+                            {/* Button */}
+                            <button
+                                onClick={() => setSelectedProject(p)}
+                                className="w-full mt-6 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-medium flex items-center justify-center gap-2 transition-colors"
+                            >
+                                <Eye size={16} /> View Details
+                            </button>
                         </div>
                     </motion.div>
                 ))}
             </div>
 
-            {/* Modal for Detailed Project View */}
+            {/* Modal for Detailed View */}
             <AnimatePresence>
                 {selectedProject && (
                     <motion.div
@@ -50,9 +96,8 @@ export default function Projects() {
                         exit={{ opacity: 0 }}
                         onClick={() => setSelectedProject(null)}
                     >
-                        {/* Scrollable Content Container */}
                         <motion.div
-                            className="relative bg-slate-900 rounded-2xl p-6 sm:p-8 max-w-[100vw] sm:max-w-2xl w-full border border-slate-700 my-6 sm:my-10 overflow-y-auto overflow-x-hidden max-h-[90vh]"
+                            className="relative bg-slate-900 rounded-2xl p-6 sm:p-8 max-w-[100vw] sm:max-w-2xl w-full border border-slate-700 my-6 sm:my-10 overflow-y-auto max-h-[90vh]"
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
@@ -63,7 +108,6 @@ export default function Projects() {
                             }}
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {/* Close Button */}
                             <button
                                 className="absolute top-3 right-4 text-slate-400 hover:text-cyan-400 text-xl"
                                 onClick={() => setSelectedProject(null)}
@@ -71,7 +115,6 @@ export default function Projects() {
                                 ✕
                             </button>
 
-                            {/* Project Header */}
                             <h3 className="text-3xl font-semibold text-cyan-400 mb-2">
                                 {selectedProject.title}
                             </h3>
@@ -80,7 +123,6 @@ export default function Projects() {
                                 {selectedProject.period}
                             </div>
 
-                            {/* Detailed Description */}
                             <div className="text-slate-300 leading-relaxed space-y-4">
                                 {selectedProject.summary
                                     ?.split("\n")
@@ -89,7 +131,6 @@ export default function Projects() {
                                     ))}
                             </div>
 
-                            {/* Key Contributions */}
                             {selectedProject.contributions && (
                                 <div className="mt-6">
                                     <h4 className="text-lg font-semibold text-cyan-400 mb-2">
@@ -97,7 +138,7 @@ export default function Projects() {
                                     </h4>
                                     <ul className="list-disc ml-6 space-y-2 text-slate-300">
                                         {selectedProject.contributions.map(
-                                            (point: string, idx: number) => (
+                                            (point, idx) => (
                                                 <li key={idx}>{point}</li>
                                             )
                                         )}
@@ -105,7 +146,6 @@ export default function Projects() {
                                 </div>
                             )}
 
-                            {/* Outcome */}
                             {selectedProject.outcome && (
                                 <div className="mt-6">
                                     <h4 className="text-lg font-semibold text-cyan-400 mb-2">
@@ -117,7 +157,6 @@ export default function Projects() {
                                 </div>
                             )}
 
-                            {/* Skills */}
                             {selectedProject.tech && (
                                 <div className="mt-6">
                                     <h4 className="text-lg font-semibold text-cyan-400 mb-2">
