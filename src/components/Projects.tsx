@@ -11,7 +11,7 @@ export default function Projects() {
     );
 
     return (
-        <section id="projects" className="max-w-7xl mx-auto px-6 py-16">
+        <section id="projects" className="max-w-7xl mx-auto px-6 py-8">
             <h2 className="text-4xl font-bold text-cyan-400 mb-12 text-center">
                 Projects
             </h2>

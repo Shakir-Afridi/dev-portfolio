@@ -21,7 +21,7 @@ export default function Education() {
     return (
         <section
             id="education"
-            className="max-w-7xl mx-auto px-6 py-16"
+            className="max-w-7xl mx-auto px-6 py-8"
             ref={ref}
         >
             <motion.h2

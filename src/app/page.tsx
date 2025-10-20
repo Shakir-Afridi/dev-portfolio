@@ -5,6 +5,7 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Skills from "@/components/Skillls";
+import CallToAction from "@/components/CalltoAction";
 
 export default function Page() {
     return (
@@ -12,6 +13,7 @@ export default function Page() {
             <Hero />
             <Education />
             <Experience />
+            <CallToAction />
             <Skills />
             <Projects />
             <Contact />

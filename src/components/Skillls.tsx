@@ -74,7 +74,7 @@ const skillsData = [
 
 export default function Skills() {
     return (
-        <section id="skills" className="max-w-7xl mx-auto px-6 py-16">
+        <section id="skills" className="max-w-7xl mx-auto px-6 py-8">
             <motion.h2
                 className="text-4xl font-bold text-cyan-400 mb-4 text-center"
                 initial={{ opacity: 0, y: 20 }}
