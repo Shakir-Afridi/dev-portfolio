@@ -52,7 +52,7 @@ export default function Projects() {
                     >
                         {/* Scrollable Content Container */}
                         <motion.div
-                            className="relative bg-slate-900 rounded-2xl p-8 max-w-3xl w-full border border-slate-700 my-10 overflow-y-auto max-h-[90vh]"
+                            className="relative bg-slate-900 rounded-2xl p-6 sm:p-8 max-w-[100vw] sm:max-w-2xl w-full border border-slate-700 my-6 sm:my-10 overflow-y-auto overflow-x-hidden max-h-[90vh]"
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
