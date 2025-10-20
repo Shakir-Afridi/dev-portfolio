@@ -103,13 +103,12 @@ export default function Contact() {
                             action={`https://formsubmit.co/${resumeData.email}`}
                             method="POST"
                             onSubmit={() => setSubmitted(true)}
-                            className="bg-slate-800/50 p-8 border-slate-700 shadow-lg text-left space-y-4 rounded-3xl overflow-hidden "
+                            className="bg-slate-800/50 p-8 border-slate-700 shadow-lg text-left space-y-4 rounded-3xl overflow-hidden"
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
-                            {/* Hidden inputs for security & UX */}
                             <input
                                 type="hidden"
                                 name="_captcha"
@@ -121,6 +120,17 @@ export default function Contact() {
                                 name="_next"
                                 value="https://shakir-ullah.netlify.app/thanks"
                             />
+                            <input
+                                type="hidden"
+                                name="_subject"
+                                value="New message from your portfolio!"
+                            />
+                            <input
+                                type="hidden"
+                                name="_replyto"
+                                value="email"
+                            />
+
                             <div>
                                 <label className="block text-slate-300 mb-1">
                                     Name
