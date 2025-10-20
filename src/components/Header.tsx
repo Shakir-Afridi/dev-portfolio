@@ -30,7 +30,7 @@ export default function Header() {
             <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
                 {/* Logo / Name */}
                 <motion.div
-                    className="text-xl font-bold text-cyan-400 cursor-pointer"
+                    className="text-xl font-extrabold bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent cursor-pointer"
                     whileHover={{
                         scale: 1.1,
                         textShadow: "0px 0px 8px rgba(34,211,238,0.8)",

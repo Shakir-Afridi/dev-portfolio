@@ -19,7 +19,7 @@ export default function Hero() {
         >
             {/* Name */}
             <motion.h1
-                className="text-4xl sm:text-5xl font-extrabold text-cyan-400"
+                className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
