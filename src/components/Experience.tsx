@@ -8,7 +8,7 @@ export default function ExperienceSection() {
             id="experience"
             className="relative max-w-7xl mx-auto px-6 py-16"
         >
-            <h2 className="text-4xl font-bold text-center text-cyan-400 mb-12">
+            <h2 className="text-4xl font-bold text-cyan-400 mb-12">
                 Experience
             </h2>
 

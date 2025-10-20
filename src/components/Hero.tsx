@@ -75,7 +75,7 @@ export default function Hero() {
             </motion.div>
             {resumeData.technicalExpertize?.length > 0 ||
             resumeData.engineeringValues?.length > 0 ? (
-                <div className="flex flex-col md:flex-row justify-between gap-4 py-12 w-full">
+                <div className="flex flex-col md:flex-row justify-between gap-4 mt-6 w-full">
                     {resumeData.technicalExpertize?.length > 0 && (
                         <motion.div
                             className="bg-cyan-900 text-white rounded-2xl p-6 md:w-1/2 w-full shadow-lg"
