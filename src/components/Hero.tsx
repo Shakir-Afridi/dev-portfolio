@@ -101,7 +101,7 @@ export default function Hero() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={downloadResume}
-                    className="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-600 hover:cursor-pointer text-white font-semibold transition-all shadow-md hover:shadow-cyan-400/30"
+                    className="px-5 py-2 rounded-lg bg-cyan-700 hover:bg-cyan-600 hover:cursor-pointer text-white font-semibold transition-all shadow-md hover:shadow-cyan-400/30"
                 >
                     Download Resume
                 </motion.button>
