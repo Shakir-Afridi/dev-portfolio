@@ -80,12 +80,24 @@ export default function Contact() {
                         ></iframe>
                     </div> */}
                 </div>
-                {!submitted ? (
+                {
                     <div>
                         <h2 className="text-4xl font-bold text-white mb-6">
                             Send a{" "}
                             <span className="text-cyan-400">Message</span>
                         </h2>
+
+                        {submitted && (
+                            <motion.div
+                                className="mt-10 text-lg text-green-400"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                ✅ Thank you for your message! I’ll get back to
+                                you soon.
+                            </motion.div>
+                        )}
 
                         <motion.form
                             action={`https://formsubmit.co/${resumeData.email}`}
@@ -158,17 +170,7 @@ export default function Contact() {
                             </motion.button>
                         </motion.form>
                     </div>
-                ) : (
-                    <motion.div
-                        className="mt-10 text-lg text-green-400"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        ✅ Thank you for your message! I’ll get back to you
-                        soon.
-                    </motion.div>
-                )}
+                }
             </div>
         </section>
     );
