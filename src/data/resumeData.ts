@@ -73,7 +73,7 @@ export const resumeData: ResumeData = {
         "Frontend: React.js, Redux, Angular, HTML5, CSS3, SCSS, Tailwind",
         "Backend: Node.js, Express.js, REST APIs, GraphQL",
         "Languages: JavaScript (ES6+), TypeScript",
-        "Tools & DevOps: Git, Docker, CI/CD, AWS, Jira, Agile/Scrum",
+        "Tools & DevOps: Git, CI/CD, AWS, Jira, Agile/Scrum",
     ],
     engineeringValues: [
         " Clean, maintainable, and well-documented code",
