@@ -17,6 +17,7 @@ export type Project = {
     outcome?: string;
     tech?: string[];
     year?: string;
+    links?: Record<string, string>[];
 };
 
 export type Education = {
@@ -50,6 +51,7 @@ export type ResumeData = {
     experience: ExperienceItem[];
     projects: Project[];
     achievements: string[];
+    openSourceProjects?: Project[];
 };
 
 export const resumeData: ResumeData = {
@@ -162,6 +164,160 @@ export const resumeData: ResumeData = {
                 "Collaborated across the full software development lifecycle (SDLC).",
             ],
             tech: ["React.js", "Express.js"],
+        },
+    ],
+    openSourceProjects: [
+        {
+            title: "React Form DTO",
+            company: "Independent Project",
+            period: "11-2025 - Present",
+            summary:
+                "Schema-First Form Builder for React & MUI. Led the design and development of React Form DTO, an open-source, schema-driven form infrastructure enabling teams to build scalable and maintainable forms from declarative DTOs. The project addresses form complexity in enterprise applications by shifting UI development from imperative JSX to configuration-driven architectures. Established a composable, extensible system aligned with Material UI v7 and modern React patterns, emphasizing accessibility, responsiveness, and strong typing. Delivered a robust imperative API to support real-world workflows such as multi-step forms, admin tools, and dynamic UI generation.",
+            tech: [
+                "React.js",
+                "TypeScript",
+                "MUI",
+                "Storybook",
+                "Vite",
+                "VitePress",
+            ],
+            links: [
+                {
+                    name: "GitHub",
+                    link: "https://github.com/Shakir-Afridi/react-form-dto",
+                },
+                {
+                    name: "Documentation",
+                    link: "https://shakir-afridi.github.io/react-form-dto/docs/",
+                },
+                {
+                    name: "Storybook",
+                    link: "https://shakir-afridi.github.io/react-form-dto/storybook",
+                },
+                {
+                    name: "NPM",
+                    link: "https://www.npmjs.com/package/react-form-dto",
+                },
+            ],
+            contributions: [
+                "Architected a DTO-first form generation system enabling declarative, configuration-based UI rendering",
+                "Built composable Form, Section, and Field abstractions supporting large-scale enterprise forms.",
+                "Integrated Material UI v7 with a responsive 12-column grid system for consistent layouts.",
+                "Designed imperative form APIs (getValues, validateAll, validateField) for advanced workflows.",
+                "Implemented conditional rendering, custom validation rules, and extensible field renderers.",
+                "Ensured strong TypeScript typing for safety, scalability, and developer productivity.",
+                "Authored comprehensive documentation and Storybook demos for adoption and onboarding",
+            ],
+            outcome:
+                "Delivered a developer-centric, schema-driven form solution that drastically reduces boilerplate, improves consistency, and accelerates form development in React applications. React Form DTO provides teams with a scalable foundation for building dynamic, accessible forms while retaining full control over layout, validation, and UI customization. The project continues to evolve through active usage, iteration, and community feedback.",
+        },
+        {
+            title: "Headless React UI Kit",
+            company: "Independent Project",
+            period: "09-2025 - Present",
+            summary:
+                "Designed and developed Headless React UI Kit — a lightweight, accessible collection of unstyled UI primitives for React applications. The library emphasizes behavior over presentation, empowering teams to build fully accessible interfaces while retaining complete control over styling through their own design systems. Built with accessibility and composability in mind, Headless React UI Kit provides a robust foundation for crafting custom UI components using ARIA roles, keyboard navigation, and focus management. Its headless architecture ensures seamless integration with any styling solution, including CSS modules, Tailwind, or styled-components.",
+            tech: ["React.js", "TypeScript", "Storybook", "Vite", "VitePress"],
+            links: [
+                {
+                    name: "GitHub",
+                    link: "https://github.com/Shakir-Afridi/react-headless-ui-kit",
+                },
+                {
+                    name: "Documentation",
+                    link: "https://shakir-afridi.github.io/react-headless-ui-kit/docs/",
+                },
+                {
+                    name: "Storybook",
+                    link: "https://shakir-afridi.github.io/react-headless-ui-kit/storybook",
+                },
+                {
+                    name: "NPM",
+                    link: "https://www.npmjs.com/package/react-headless-ui-kit",
+                },
+            ],
+            contributions: [
+                "Engineered a suite of headless components and hooks that abstract complex UI behavior while remaining style-agnostic.",
+                "Implemented accessibility best practices across all primitives, including ARIA roles, keyboard support, and focus management.",
+                "Designed the library to be composable and lightweight, enabling flexible integration into any React environment with minimal dependencies.",
+                "Authored developer-friendly documentation using VitePress and Storybook, featuring live demos and usage guides for each component.",
+                "Published the package to npm with semantic versioning and CI/CD workflows for automated releases and changelog generation.",
+                "Promoted the library through social media and developer communities, encouraging feedback and contributions from the React ecosystem.",
+            ],
+            outcome:
+                "Delivered a modern, developer-centric UI foundation that simplifies accessible component development while supporting full design system customization. The project has been embraced by the open-source community and continues to evolve through active feedback and collaboration.",
+        },
+        {
+            title: "React Hookstack",
+            company: "Independent Project",
+            period: "09-2025 - 10-2025",
+            summary:
+                "Designed and developed react-hookstack, a lightweight and powerful collection of reusable React hooks aimed at simplifying state management, event handling, and UI logic across modern React applications. The library provides a composable, framework-agnostic API that integrates seamlessly into any React setup, including Vite, CRA, and Next.js. Built with developer experience in mind, react-hookstack abstracts common patterns into intuitive hooks—empowering teams to write cleaner, more maintainable code while reducing boilerplate and cognitive overhead.",
+            tech: ["React.js", "TypeScript", "Storybook", "Vite", "VitePress"],
+            links: [
+                {
+                    name: "GitHub",
+                    link: "github.com/Shakir-Afridi/react-handyhooks",
+                },
+                {
+                    name: "Documentation",
+                    link: "https://shakir-afridi.github.io/react-handyhooks/docs/",
+                },
+                {
+                    name: "Storybook",
+                    link: "https://shakir-afridi.github.io/react-handyhooks/storybook",
+                },
+                {
+                    name: "NPM",
+                    link: "https://www.npmjs.com/package/react-hookstack",
+                },
+            ],
+            contributions: [
+                "Architected a modular hook system using TypeScript, enabling strong typing and IDE support for better DX.",
+                "Implemented reusable utilities for stack-based state, event throttling/debouncing, and UI logic abstraction.",
+                "Designed the library to be composable and framework-agnostic, ensuring compatibility across diverse React environments.",
+                "Authored comprehensive documentation using VitePress and Storybook, including live examples and usage guides.",
+                "Published the package to npm with semantic versioning and CI/CD integration for automated releases.",
+                "Promoted the library through social media and developer communities to encourage adoption and gather feedback.",
+            ],
+            outcome:
+                "Delivered a robust, developer-friendly hook library that streamlines common React patterns and encourages clean, reusable architecture. The project has been well-received by the open-source community and continues to evolve through community feedback and contributions.",
+        },
+        {
+            title: "React Performify",
+            company: "Independent Project",
+            period: "09-2025 - 10-2025",
+            summary:
+                "Designed and developed React Performify, a lightweight performance toolkit for React applications that empowers developers to measure, optimize, and visualize component performance using clean, composable hooks. The library aims to make performance management as intuitive and accessible as state management—without sacrificing flexibility or developer experience. React Performify abstracts common performance patterns into reusable utilities, helping teams identify bottlenecks, monitor render behavior, and apply optimizations with minimal overhead.",
+            tech: ["React.js", "TypeScript", "Storybook", "Vite", "VitePress"],
+            links: [
+                {
+                    name: "GitHub",
+                    link: "https://github.com/Shakir-Afridi/react-performify",
+                },
+                {
+                    name: "Documentation",
+                    link: "https://shakir-afridi.github.io/react-performify/docs/",
+                },
+                {
+                    name: "Storybook",
+                    link: "https://shakir-afridi.github.io/react-performify/storybook",
+                },
+                {
+                    name: "NPM",
+                    link: "https://www.npmjs.com/package/react-performify",
+                },
+            ],
+            contributions: [
+                "Engineered a suite of performance-focused hooks using TypeScript, including render tracking, memoization helpers, and visualization tools.",
+                "Designed the API to be composable and framework-agnostic, ensuring seamless integration with Vite, CRA, Next.js, and other React setups.",
+                "Built smart utilities that abstract common React logic into reusable patterns, reducing boilerplate and improving maintainability.",
+                "Authored documentation and live examples using VitePress and Storybook to demonstrate real-world use cases.",
+                "Published the package to npm with semantic versioning and CI/CD support for automated releases.",
+                "Promoted the toolkit through developer communities and social media to gather feedback and encourage adoption.",
+            ],
+            outcome:
+                "Delivered a developer-friendly performance toolkit that simplifies profiling and optimization workflows in React. React Performify helps teams build faster, more efficient UIs while maintaining clean, readable codebases.",
         },
     ],
     projects: [
