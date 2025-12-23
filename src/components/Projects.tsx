@@ -111,7 +111,7 @@ export default function Projects() {
                     </h2>
                     <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 mb-8">
                         {resumeData.openSourceProjects?.map((p, i) => (
-                            <ProjectCard p={p} i={i} />
+                            <ProjectCard p={p} i={i} key={i} />
                         ))}
                     </div>
                 </>
@@ -123,7 +123,7 @@ export default function Projects() {
             {/* Projects Grid */}
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                 {resumeData.projects.map((p, i) => (
-                    <ProjectCard p={p} i={i} />
+                    <ProjectCard p={p} i={i} key={i} />
                 ))}
             </div>
 
