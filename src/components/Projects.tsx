@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Eye, Users, Activity } from "lucide-react";
+import { Eye, Activity } from "lucide-react";
 import { Project, resumeData } from "../data/resumeData";
 
 export default function Projects() {
