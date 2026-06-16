@@ -46,7 +46,9 @@ const skillsData: SkillCategory[] = [
     },
     {
         title: "Backend Technologies",
-        icon: <ServerCog className="w-5 h-5 text-green-400" aria-hidden="true" />,
+        icon: (
+            <ServerCog className="w-5 h-5 text-green-400" aria-hidden="true" />
+        ),
         skills: [
             { name: "Node.js", level: 95, color: "bg-green-500" },
             { name: "Express.js", level: 95, color: "bg-emerald-500" },
@@ -66,12 +68,14 @@ const skillsData: SkillCategory[] = [
     },
     {
         title: "Databases & Cloud",
-        icon: <Database className="w-5 h-5 text-indigo-400" aria-hidden="true" />,
+        icon: (
+            <Database className="w-5 h-5 text-indigo-400" aria-hidden="true" />
+        ),
         skills: [
             { name: "PostgreSQL", level: 85, color: "bg-blue-500" },
             { name: "MySQL", level: 85, color: "bg-cyan-500" },
-            { name: "AWS", level: 75, color: "bg-orange-400" },
-            { name: "Firebase", level: 70, color: "bg-yellow-500" },
+            { name: "AWS", level: 35, color: "bg-orange-400" },
+            { name: "Firebase", level: 40, color: "bg-yellow-500" },
         ],
     },
 ];

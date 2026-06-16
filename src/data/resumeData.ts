@@ -1,6 +1,7 @@
 export type ExperienceItem = {
     role: string;
     company: string;
+    clientOf?: string;
     start: string;
     end?: string;
     location?: string;
@@ -117,9 +118,10 @@ export const resumeData: ResumeData = {
         {
             role: "Senior Software Engineer – React",
             company: "RAKBANK",
+            clientOf: "Digitify",
             start: "2024-07-22",
             end: "Present",
-            location: "Dubai, United Arab Emirates",
+            location: "Dubai, United Arab Emirates (Remote)",
             bullets: [
                 "Led development of scalable front-end components using React.js, Next.js, Redux, and Material UI, improving page load time by 20%.",
                 "Implemented reusable design patterns and optimised architecture, reducing maintenance overhead by 30%.",
@@ -133,6 +135,20 @@ export const resumeData: ResumeData = {
             company: "Digitify",
             start: "2022-03-01",
             end: "Present",
+            location: "Lahore, Pakistan",
+            bullets: [
+                "Engineered high-performance responsive UI features with React.js, TypeScript, Redux, and Material UI, improving load speed by 30%.",
+                "Developed and maintained RESTful APIs and middleware services in Node.js, reducing data transfer latency by 25%.",
+                "Conducted unit testing with Jest, achieving 85%+ test coverage.",
+            ],
+            tech: ["React.js", "TypeScript", "Node.js", "Material UI"],
+        },
+        {
+            role: "Contractor UI Developer",
+            company: "Aria Systems",
+            clientOf: "Digitify",
+            start: "2020-11-25",
+            end: "2026-03-31",
             location: "Lahore, Pakistan",
             bullets: [
                 "Engineered high-performance responsive UI features with React.js, TypeScript, Redux, and Material UI, improving load speed by 30%.",

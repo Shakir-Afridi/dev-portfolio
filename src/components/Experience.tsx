@@ -12,11 +12,17 @@ function formatDate(dateStr: string): string {
 
 function ExperienceCard({ exp }: { exp: ExperienceItem }) {
     return (
-        <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 shadow-lg hover:shadow-cyan-400/10 hover:border-slate-600 transition-all duration-300">
+        <div className={`bg-slate-800/60 border rounded-2xl p-6 shadow-lg transition-all duration-300 ${exp.clientOf ? "border-amber-500/40 hover:shadow-amber-400/10 hover:border-amber-500/60" : "border-slate-700 hover:shadow-cyan-400/10 hover:border-slate-600"}`}>
             <h3 className="text-lg font-semibold text-white">{exp.role}</h3>
-            <p className="text-cyan-300 text-sm font-medium mt-1 mb-4">
-                {exp.company}
-            </p>
+            <div className="mt-1 mb-4 flex flex-wrap items-center gap-2">
+                <p className="text-cyan-300 text-sm font-medium">{exp.company}</p>
+                {exp.clientOf && (
+                    <span className="inline-flex items-center gap-1 text-xs font-medium bg-amber-500/10 border border-amber-500/30 text-amber-400 px-2 py-0.5 rounded-full">
+                        <Building2 size={10} aria-hidden="true" />
+                        via {exp.clientOf}
+                    </span>
+                )}
+            </div>
             <ul className="space-y-2" role="list">
                 {exp.bullets.map((b, i) => (
                     <li
@@ -114,8 +120,8 @@ export default function ExperienceSection() {
                                 {/* Mobile layout: left-padded */}
                                 <div className="md:hidden pl-10">
                                     {/* Mobile dot */}
-                                    <span className="absolute left-2.5 top-4 w-4 h-4 bg-cyan-400 rounded-full ring-4 ring-slate-900 z-10" />
-                                    <p className="text-xs text-cyan-300 font-medium mb-2 flex flex-wrap items-center gap-x-3 gap-y-0.5">
+                                    <span className={`absolute left-2.5 top-4 w-4 h-4 rounded-full ring-4 ring-slate-900 z-10 ${exp.clientOf ? "bg-amber-400" : "bg-cyan-400"}`} />
+                                    <p className={`text-xs font-medium mb-2 flex flex-wrap items-center gap-x-3 gap-y-0.5 ${exp.clientOf ? "text-amber-300" : "text-cyan-300"}`}>
                                         <span className="flex items-center gap-1">
                                             <Calendar size={11} aria-hidden="true" />
                                             <time dateTime={exp.start}>
@@ -142,7 +148,7 @@ export default function ExperienceSection() {
                                 </div>
 
                                 {/* Desktop: center dot */}
-                                <span className="hidden md:block absolute w-4 h-4 bg-cyan-400 rounded-full left-1/2 -translate-x-1/2 top-5 ring-4 ring-slate-900 z-10" />
+                                <span className={`hidden md:block absolute w-4 h-4 rounded-full left-1/2 -translate-x-1/2 top-5 ring-4 ring-slate-900 z-10 ${exp.clientOf ? "bg-amber-400" : "bg-cyan-400"}`} />
 
                                 {/* Desktop: date + location label on opposing side */}
                                 <div
@@ -152,7 +158,7 @@ export default function ExperienceSection() {
                                             : "left-[53%] items-start pl-6 text-left"
                                     }`}
                                 >
-                                    <p className="text-cyan-300 text-xs font-medium whitespace-nowrap flex items-center gap-1">
+                                    <p className={`text-xs font-medium whitespace-nowrap flex items-center gap-1 ${exp.clientOf ? "text-amber-300" : "text-cyan-300"}`}>
                                         <Calendar size={11} aria-hidden="true" />
                                         <time dateTime={exp.start}>
                                             {formatDate(exp.start)}
