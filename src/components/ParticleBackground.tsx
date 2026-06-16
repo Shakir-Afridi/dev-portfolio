@@ -49,19 +49,6 @@ export default function ParticleBackground() {
         let particles: Particle[] = [];
         let lastTime = 0;
 
-        // Pre-render a glow sprite once — used via drawImage instead of shadowBlur
-        const SPRITE = 40;
-        const half = SPRITE / 2;
-        const glowSprite = document.createElement("canvas");
-        glowSprite.width = SPRITE;
-        glowSprite.height = SPRITE;
-        const gc = glowSprite.getContext("2d")!;
-        const grd = gc.createRadialGradient(half, half, 0, half, half, half);
-        grd.addColorStop(0, "rgba(200, 215, 255, 0.55)");
-        grd.addColorStop(1, "rgba(200, 215, 255, 0)");
-        gc.fillStyle = grd;
-        gc.fillRect(0, 0, SPRITE, SPRITE);
-
         const resize = () => {
             // Fixed canvas — only the viewport is ever visible
             canvas.width = window.innerWidth;
@@ -76,7 +63,7 @@ export default function ParticleBackground() {
                 vy: (Math.random() - 0.5) * PARTICLE_SPEED * 2,
                 baseRadius: 1.5 + Math.random() * 2,
                 phase: Math.random() * Math.PI * 2,
-                twinkleSpeed: 0.8 + Math.random() * 1.5,
+                twinkleSpeed: 0.25 + Math.random() * 0.5,
             }));
         };
 
@@ -114,21 +101,12 @@ export default function ParticleBackground() {
             }
             ctx.stroke();
 
-            // Glow pass (drawImage — no shadowBlur)
-            for (const p of particles) {
-                const twinkle =
-                    0.5 + 0.5 * Math.sin(now * p.twinkleSpeed + p.phase);
-                ctx.globalAlpha = (0.2 + 0.8 * twinkle) * 0.55;
-                ctx.drawImage(glowSprite, p.x - half, p.y - half);
-            }
-            ctx.globalAlpha = 1;
-
             // Sparkle shapes + core dots
             for (const p of particles) {
                 const twinkle =
                     0.5 + 0.5 * Math.sin(now * p.twinkleSpeed + p.phase);
-                const opacity = 0.2 + 0.8 * twinkle;
-                const radius = p.baseRadius * (0.6 + 0.4 * twinkle);
+                const opacity = 0.3 + 0.4 * twinkle;
+                const radius = p.baseRadius * (0.7 + 0.3 * twinkle);
 
                 drawSparkle(ctx, p.x, p.y, radius * 2.2, radius * 0.45);
                 ctx.fillStyle = `rgba(230, 240, 255, ${opacity})`;
