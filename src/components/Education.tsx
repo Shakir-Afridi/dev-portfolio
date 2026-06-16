@@ -1,103 +1,116 @@
 "use client";
 
-import { motion, useInView, useAnimation } from "framer-motion";
-import { useRef, useEffect } from "react";
-import { GraduationCap, MapPin, Calendar } from "lucide-react";
+import { motion } from "framer-motion";
+import { GraduationCap, MapPin, Calendar, Award } from "lucide-react";
 import { resumeData } from "../data/resumeData";
 
+function formatDate(dateStr: string): string {
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+}
+
 export default function Education() {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { amount: 0.3 });
-    const controls = useAnimation();
-
-    useEffect(() => {
-        if (isInView) {
-            controls.start("visible");
-        } else {
-            controls.start("hidden");
-        }
-    }, [isInView, controls]);
-
     return (
-        <section
-            id="education"
-            className="max-w-7xl mx-auto px-6 py-8"
-            ref={ref}
-        >
+        <section id="education" className="max-w-7xl mx-auto px-6 py-16">
             <motion.h2
-                className="text-4xl font-bold mb-10 text-cyan-400 text-center"
-                variants={{
-                    hidden: { opacity: 0, y: 40 },
-                    visible: { opacity: 1, y: 0 },
-                }}
-                initial="hidden"
-                animate={controls}
+                className="text-4xl font-bold mb-12 text-cyan-400 text-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
+                viewport={{ once: true }}
             >
                 Education
             </motion.h2>
 
-            <div className="relative border-slate-700 space-y-8">
+            <div className="space-y-6">
                 {resumeData.education.map((edu, i) => (
-                    <motion.div
+                    <motion.article
                         key={i}
-                        className="relative"
-                        variants={{
-                            hidden: { opacity: 0, y: 40 },
-                            visible: { opacity: 1, y: 0 },
-                        }}
-                        initial="hidden"
-                        animate={controls}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{
-                            duration: 0.6,
-                            delay: i * 0.2,
+                            duration: 0.55,
+                            delay: i * 0.12,
                             ease: "easeOut",
                         }}
+                        viewport={{ once: true }}
+                        aria-label={`${edu.degree} at ${edu.institution}`}
                     >
-                        {/* Education Card */}
-                        <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:shadow-cyan-400/10 transition-all duration-300">
-                            <div className="flex items-center gap-3 mb-2">
-                                <GraduationCap className="w-5 h-5 text-cyan-400" />
-                                <h3 className="text-lg font-semibold text-slate-100">
-                                    {edu.degree}
-                                </h3>
-                            </div>
-                            <p className="text-slate-300 font-medium mb-2">
-                                {edu.institution}
-                            </p>
-
-                            <div className="flex items-center gap-4 text-sm text-slate-400 mb-3">
-                                <div className="flex items-center gap-1">
-                                    <Calendar className="w-4 h-4" />
-                                    <span>
-                                        {edu.start} — {edu.end}
-                                    </span>
+                        <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 hover:border-slate-600 hover:shadow-cyan-400/10 transition-all duration-300">
+                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                                <div>
+                                    <div className="flex items-center gap-3 mb-1.5">
+                                        <GraduationCap
+                                            className="w-5 h-5 text-cyan-400 shrink-0"
+                                            aria-hidden="true"
+                                        />
+                                        <h3 className="text-lg font-semibold text-slate-100">
+                                            {edu.degree}
+                                        </h3>
+                                    </div>
+                                    <p className="text-slate-300 font-medium ml-8">
+                                        {edu.institution}
+                                    </p>
                                 </div>
-                                <div className="flex items-center gap-1">
-                                    <MapPin className="w-4 h-4" />
+                                {edu.gpa && (
+                                    <span className="shrink-0 self-start text-sm font-bold text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-3 py-1 rounded-lg">
+                                        GPA: {edu.gpa}
+                                    </span>
+                                )}
+                            </div>
+
+                            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400 mt-3 ml-8">
+                                <div className="flex items-center gap-1.5">
+                                    <Calendar
+                                        className="w-4 h-4"
+                                        aria-hidden="true"
+                                    />
+                                    <time dateTime={edu.start}>
+                                        {formatDate(edu.start)}
+                                    </time>
+                                    <span aria-hidden="true">–</span>
+                                    <time dateTime={edu.end}>
+                                        {formatDate(edu.end)}
+                                    </time>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                    <MapPin
+                                        className="w-4 h-4"
+                                        aria-hidden="true"
+                                    />
                                     <span>{edu.location}</span>
                                 </div>
                             </div>
 
-                            <p className="text-sm text-slate-400 leading-relaxed">
-                                {edu.description}
-                            </p>
+                            {edu.description && (
+                                <p className="text-sm text-slate-400 leading-relaxed mt-4 ml-8">
+                                    {edu.description}
+                                </p>
+                            )}
 
-                            {edu.achievements && (
-                                <ul className="mt-3 text-sm text-slate-300 list-disc list-inside space-y-1">
+                            {edu.achievements?.length > 0 && (
+                                <ul
+                                    className="mt-4 ml-8 space-y-1.5"
+                                    role="list"
+                                    aria-label="Achievements"
+                                >
                                     {edu.achievements.map((a, idx) => (
-                                        <li key={idx}>{a}</li>
+                                        <li
+                                            key={idx}
+                                            className="text-sm text-slate-300 flex items-center gap-2"
+                                        >
+                                            <Award
+                                                className="w-4 h-4 text-yellow-400 shrink-0"
+                                                aria-hidden="true"
+                                            />
+                                            {a}
+                                        </li>
                                     ))}
                                 </ul>
                             )}
-
-                            {edu.gpa && (
-                                <p className="mt-3 text-sm font-semibold text-cyan-400">
-                                    GPA: {edu.gpa}
-                                </p>
-                            )}
                         </div>
-                    </motion.div>
+                    </motion.article>
                 ))}
             </div>
         </section>

@@ -1,5 +1,6 @@
 "use client";
 
+import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import {
     Code2,
@@ -10,10 +11,13 @@ import {
     ServerCog,
 } from "lucide-react";
 
-const skillsData = [
+type SkillEntry = { name: string; level: number; color: string };
+type SkillCategory = { title: string; icon: ReactNode; skills: SkillEntry[] };
+
+const skillsData: SkillCategory[] = [
     {
         title: "Frontend Frameworks",
-        icon: <Code2 className="w-5 h-5 text-cyan-400" />,
+        icon: <Code2 className="w-5 h-5 text-cyan-400" aria-hidden="true" />,
         skills: [
             { name: "React", level: 95, color: "bg-cyan-500" },
             { name: "Redux", level: 90, color: "bg-pink-500" },
@@ -22,7 +26,7 @@ const skillsData = [
     },
     {
         title: "Programming Languages",
-        icon: <Layers className="w-5 h-5 text-orange-400" />,
+        icon: <Layers className="w-5 h-5 text-orange-400" aria-hidden="true" />,
         skills: [
             { name: "JavaScript", level: 90, color: "bg-yellow-400" },
             { name: "TypeScript", level: 95, color: "bg-blue-400" },
@@ -32,7 +36,7 @@ const skillsData = [
     },
     {
         title: "UI/UX Libraries",
-        icon: <Palette className="w-5 h-5 text-pink-400" />,
+        icon: <Palette className="w-5 h-5 text-pink-400" aria-hidden="true" />,
         skills: [
             { name: "Material UI", level: 95, color: "bg-pink-400" },
             { name: "Tailwind CSS", level: 85, color: "bg-cyan-400" },
@@ -42,7 +46,7 @@ const skillsData = [
     },
     {
         title: "Backend Technologies",
-        icon: <ServerCog className="w-5 h-5 text-green-400" />,
+        icon: <ServerCog className="w-5 h-5 text-green-400" aria-hidden="true" />,
         skills: [
             { name: "Node.js", level: 95, color: "bg-green-500" },
             { name: "Express.js", level: 95, color: "bg-emerald-500" },
@@ -52,7 +56,7 @@ const skillsData = [
     },
     {
         title: "Development Tools",
-        icon: <Wrench className="w-5 h-5 text-yellow-400" />,
+        icon: <Wrench className="w-5 h-5 text-yellow-400" aria-hidden="true" />,
         skills: [
             { name: "Git", level: 92, color: "bg-red-500" },
             { name: "VS Code", level: 95, color: "bg-blue-400" },
@@ -62,7 +66,7 @@ const skillsData = [
     },
     {
         title: "Databases & Cloud",
-        icon: <Database className="w-5 h-5 text-indigo-400" />,
+        icon: <Database className="w-5 h-5 text-indigo-400" aria-hidden="true" />,
         skills: [
             { name: "PostgreSQL", level: 85, color: "bg-blue-500" },
             { name: "MySQL", level: 85, color: "bg-cyan-500" },
@@ -72,9 +76,35 @@ const skillsData = [
     },
 ];
 
+function SkillBar({ skill, delay }: { skill: SkillEntry; delay: number }) {
+    return (
+        <div>
+            <div className="flex justify-between text-sm text-slate-300 mb-1.5">
+                <span>{skill.name}</span>
+                <span className="tabular-nums text-slate-400">
+                    {skill.level}%
+                </span>
+            </div>
+            <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                <motion.div
+                    className={`h-full ${skill.color} rounded-full`}
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    transition={{
+                        duration: 1,
+                        ease: "easeOut",
+                        delay,
+                    }}
+                    viewport={{ once: true, amount: 0.8 }}
+                />
+            </div>
+        </div>
+    );
+}
+
 export default function Skills() {
     return (
-        <section id="skills" className="max-w-7xl mx-auto px-6 py-8">
+        <section id="skills" className="max-w-7xl mx-auto px-6 py-16">
             <motion.h2
                 className="text-4xl font-bold text-cyan-400 mb-4 text-center"
                 initial={{ opacity: 0, y: 20 }}
@@ -84,44 +114,35 @@ export default function Skills() {
             >
                 Skills & Expertise
             </motion.h2>
-            <p className="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
+            <p className="text-center text-slate-400 mb-12 max-w-2xl mx-auto text-sm md:text-base">
                 A comprehensive overview of my technical expertise and
                 professional competencies.
             </p>
 
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {skillsData.map((category, i) => (
                     <motion.div
                         key={i}
-                        className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-md hover:shadow-cyan-400/10 transition-all duration-300"
+                        className="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 shadow-md hover:shadow-cyan-400/10 hover:border-slate-600 transition-all duration-300"
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: i * 0.1 }}
+                        transition={{ duration: 0.5, delay: i * 0.07 }}
                         viewport={{ once: true }}
                     >
-                        {/* Header */}
-                        <div className="flex items-center gap-2 mb-5">
+                        <div className="flex items-center gap-2.5 mb-5">
                             {category.icon}
-                            <h3 className="text-lg font-semibold text-slate-100">
+                            <h3 className="text-base font-semibold text-slate-100">
                                 {category.title}
                             </h3>
                         </div>
 
-                        {/* Skills */}
                         <div className="space-y-4">
                             {category.skills.map((skill, idx) => (
-                                <div key={idx}>
-                                    <div className="flex justify-between text-sm text-slate-300 mb-1">
-                                        <span>{skill.name}</span>
-                                        <span>{skill.level}%</span>
-                                    </div>
-                                    <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                        <div
-                                            className={`h-full ${skill.color} transition-all duration-700`}
-                                            style={{ width: `${skill.level}%` }}
-                                        ></div>
-                                    </div>
-                                </div>
+                                <SkillBar
+                                    key={idx}
+                                    skill={skill}
+                                    delay={idx * 0.12}
+                                />
                             ))}
                         </div>
                     </motion.div>
