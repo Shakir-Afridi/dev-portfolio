@@ -149,7 +149,7 @@ export const resumeData: ResumeData = {
             clientOf: "Digitify",
             start: "2020-11-25",
             end: "2026-03-31",
-            location: "Lahore, Pakistan",
+            location: "San Francisco, California, USA (Remote)",
             bullets: [
                 "Engineered high-performance responsive UI features with React.js, TypeScript, Redux, and Material UI, improving load speed by 30%.",
                 "Developed and maintained RESTful APIs and middleware services in Node.js, reducing data transfer latency by 25%.",
