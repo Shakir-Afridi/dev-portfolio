@@ -7,6 +7,10 @@ export function ogImageTitle() {
     return resumeData.title.replace(/^🚀\s*/, "");
 }
 
+function ogImageShortTitle() {
+    return ogImageTitle().split("|")[0].trim();
+}
+
 export function OgImageContent() {
     return (
         <div
@@ -17,6 +21,7 @@ export function OgImageContent() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                textAlign: "center",
                 backgroundColor: "#07070a",
                 backgroundImage:
                     "radial-gradient(circle at 22% 18%, rgba(34,211,238,0.35), transparent 45%), radial-gradient(circle at 80% 85%, rgba(168,85,247,0.32), transparent 50%)",
@@ -36,16 +41,16 @@ export function OgImageContent() {
                 style={{
                     display: "flex",
                     marginTop: 22,
-                    fontSize: 34,
+                    fontSize: 36,
                     color: "#e2e8f0",
                 }}
             >
-                {ogImageTitle()}
+                {ogImageShortTitle()}
             </div>
             <div
                 style={{
                     display: "flex",
-                    marginTop: 18,
+                    marginTop: 20,
                     fontSize: 26,
                     color: "#94a3b8",
                 }}
