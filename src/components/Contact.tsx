@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, CheckCircle } from "lucide-react";
+import { Mail, Phone, MapPin, CheckCircle, AlertCircle } from "lucide-react";
 import { resumeData } from "../data/resumeData";
 
 const contactInfo = [
@@ -26,8 +26,34 @@ const contactInfo = [
     },
 ];
 
+type Status = "idle" | "submitting" | "success" | "error";
+
 export default function Contact() {
-    const [submitted, setSubmitted] = useState(false);
+    const [status, setStatus] = useState<Status>("idle");
+
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setStatus("submitting");
+
+        try {
+            const form = e.currentTarget;
+            const response = await fetch(
+                `https://formsubmit.co/ajax/${resumeData.email}`,
+                {
+                    method: "POST",
+                    headers: { Accept: "application/json" },
+                    body: new FormData(form),
+                }
+            );
+
+            if (!response.ok) throw new Error("Submission failed");
+
+            setStatus("success");
+            form.reset();
+        } catch {
+            setStatus("error");
+        }
+    };
 
     return (
         <section
@@ -97,7 +123,7 @@ export default function Contact() {
                         <span className="text-cyan-400">Message</span>
                     </h3>
 
-                    {submitted ? (
+                    {status === "success" ? (
                         <motion.div
                             className="flex items-center gap-3 text-green-400 bg-green-400/10 border border-green-400/20 rounded-xl p-4"
                             initial={{ opacity: 0, scale: 0.95 }}
@@ -117,9 +143,7 @@ export default function Contact() {
                         </motion.div>
                     ) : (
                         <form
-                            action={`https://formsubmit.co/${resumeData.email}`}
-                            method="POST"
-                            onSubmit={() => setSubmitted(true)}
+                            onSubmit={handleSubmit}
                             className="bg-slate-800/50 border border-slate-700 p-8 space-y-5 rounded-2xl"
                             noValidate
                         >
@@ -135,14 +159,29 @@ export default function Contact() {
                             />
                             <input
                                 type="hidden"
-                                name="_next"
-                                value="https://shakir-ullah.netlify.app/thanks"
-                            />
-                            <input
-                                type="hidden"
                                 name="_subject"
                                 value="New message from your portfolio!"
                             />
+
+                            {status === "error" && (
+                                <motion.div
+                                    className="flex items-center gap-3 text-red-400 bg-red-400/10 border border-red-400/20 rounded-xl p-4 text-sm"
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.4 }}
+                                    role="alert"
+                                >
+                                    <AlertCircle
+                                        size={18}
+                                        className="shrink-0"
+                                        aria-hidden="true"
+                                    />
+                                    <span>
+                                        Something went wrong. Please try
+                                        again, or email me directly.
+                                    </span>
+                                </motion.div>
+                            )}
 
                             <div>
                                 <label
@@ -217,11 +256,22 @@ export default function Contact() {
 
                             <motion.button
                                 type="submit"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold rounded-xl shadow-md transition-colors"
+                                disabled={status === "submitting"}
+                                whileHover={
+                                    status === "submitting"
+                                        ? {}
+                                        : { scale: 1.02 }
+                                }
+                                whileTap={
+                                    status === "submitting"
+                                        ? {}
+                                        : { scale: 0.98 }
+                                }
+                                className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl shadow-md transition-colors"
                             >
-                                Send Message
+                                {status === "submitting"
+                                    ? "Sending..."
+                                    : "Send Message"}
                             </motion.button>
                         </form>
                     )}

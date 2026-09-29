@@ -18,6 +18,5 @@ module.exports = {
                 ],
             },
         ],
-        additionalSitemaps: ["https://shakir-ullah.netlify.app/sitemap.xml"],
     },
 };

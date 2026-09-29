@@ -2,13 +2,7 @@
 import { motion } from "framer-motion";
 import { Briefcase, Code, Building2, Award, Calendar, MapPin } from "lucide-react";
 import { resumeData, ExperienceItem } from "@/data/resumeData";
-
-function formatDate(dateStr: string): string {
-    if (!dateStr || dateStr === "Present") return "Present";
-    const d = new Date(dateStr);
-    if (isNaN(d.getTime())) return dateStr;
-    return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
-}
+import { formatDate } from "@/lib/formatDate";
 
 function ExperienceCard({ exp }: { exp: ExperienceItem }) {
     return (

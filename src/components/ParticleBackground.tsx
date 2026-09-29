@@ -31,7 +31,11 @@ function drawSparkle(
         const angle = (i * Math.PI) / 4 - Math.PI / 4;
         const px = x + r * Math.cos(angle);
         const py = y + r * Math.sin(angle);
-        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+        if (i === 0) {
+            ctx.moveTo(px, py);
+        } else {
+            ctx.lineTo(px, py);
+        }
     }
     ctx.closePath();
 }
@@ -45,9 +49,13 @@ export default function ParticleBackground() {
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
+        const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
         let animationId: number;
         let particles: Particle[] = [];
-        let lastTime = 0;
+        let lastTime = -Infinity;
 
         const resize = () => {
             // Fixed canvas — only the viewport is ever visible
@@ -71,7 +79,9 @@ export default function ParticleBackground() {
         };
 
         const draw = (timestamp: number) => {
-            animationId = requestAnimationFrame(draw);
+            if (!prefersReducedMotion) {
+                animationId = requestAnimationFrame(draw);
+            }
 
             if (timestamp - lastTime < FRAME_INTERVAL) return;
             lastTime = timestamp;
@@ -125,11 +135,19 @@ export default function ParticleBackground() {
         const handleResize = () => {
             resize();
             initParticles();
+            if (prefersReducedMotion) {
+                lastTime = -Infinity;
+                draw(performance.now());
+            }
         };
 
         resize();
         initParticles();
-        animationId = requestAnimationFrame(draw);
+        if (prefersReducedMotion) {
+            draw(performance.now());
+        } else {
+            animationId = requestAnimationFrame(draw);
+        }
 
         window.addEventListener("resize", handleResize);
         return () => {

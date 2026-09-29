@@ -1,16 +1,7 @@
 "use client";
 import { motion, useReducedMotion } from "framer-motion";
 import { Download, Mail } from "lucide-react";
-
-function LinkedinIcon({ size = 16 }: { size?: number }) {
-    return (
-        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-            <rect width="4" height="12" x="2" y="9" />
-            <circle cx="4" cy="4" r="2" />
-        </svg>
-    );
-}
+import LinkedinIcon from "@/components/icons/LinkedinIcon";
 import { resumeData } from "../data/resumeData";
 
 export default function Hero() {
@@ -40,7 +31,7 @@ export default function Hero() {
             className="flex flex-col items-center max-w-7xl mx-auto px-6 py-16 text-center"
         >
             <motion.h1
-                className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent"
+                className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-linear-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent"
                 {...fadeUp(0)}
             >
                 {resumeData.name}

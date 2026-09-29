@@ -3,12 +3,7 @@
 import { motion } from "framer-motion";
 import { GraduationCap, MapPin, Calendar, Award } from "lucide-react";
 import { resumeData } from "../data/resumeData";
-
-function formatDate(dateStr: string): string {
-    const d = new Date(dateStr);
-    if (isNaN(d.getTime())) return dateStr;
-    return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
-}
+import { formatDate } from "@/lib/formatDate";
 
 export default function Education() {
     return (
