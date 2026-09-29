@@ -52,16 +52,16 @@ export default function Hero() {
                 {resumeData.location}
             </motion.p>
 
-            <motion.div
-                className="mt-6 max-w-3xl space-y-4"
-                {...fadeUp(0.4)}
-            >
+            <motion.div className="mt-6 max-w-3xl space-y-4" {...fadeUp(0.4)}>
                 {resumeData.summary?.split("\n").map((para, idx) =>
                     para.trim() ? (
-                        <p key={idx} className="text-slate-400 leading-relaxed text-sm md:text-base">
+                        <p
+                            key={idx}
+                            className="text-slate-400 leading-relaxed text-sm md:text-base"
+                        >
                             {para.trim()}
                         </p>
-                    ) : null
+                    ) : null,
                 )}
             </motion.div>
 
@@ -94,8 +94,8 @@ export default function Hero() {
                 <motion.a
                     whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
                     whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
-                    href="/files/ShakirUllah_Resume.pdf"
-                    download="ShakirUllah_Resume.pdf"
+                    href="/files/Shakir_Ullah_Resume.pdf"
+                    download="Shakir_Ullah_Resume.pdf"
                     aria-label="Download resume as PDF"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-cyan-700 hover:bg-cyan-600 text-white font-semibold text-sm transition-all shadow-md hover:shadow-cyan-400/20"
                 >
@@ -117,20 +117,22 @@ export default function Hero() {
                                 Technical Expertise
                             </h3>
                             <ul className="space-y-2.5" role="list">
-                                {resumeData.technicalExpertize.map((item, idx) => (
-                                    <li
-                                        key={idx}
-                                        className="text-slate-300 text-sm flex items-start gap-2 leading-relaxed"
-                                    >
-                                        <span
-                                            className="text-cyan-400 mt-0.5 shrink-0"
-                                            aria-hidden="true"
+                                {resumeData.technicalExpertize.map(
+                                    (item, idx) => (
+                                        <li
+                                            key={idx}
+                                            className="text-slate-300 text-sm flex items-start gap-2 leading-relaxed"
                                         >
-                                            ▸
-                                        </span>
-                                        {item}
-                                    </li>
-                                ))}
+                                            <span
+                                                className="text-cyan-400 mt-0.5 shrink-0"
+                                                aria-hidden="true"
+                                            >
+                                                ▸
+                                            </span>
+                                            {item}
+                                        </li>
+                                    ),
+                                )}
                             </ul>
                         </motion.div>
                     )}
@@ -145,20 +147,22 @@ export default function Hero() {
                                 Engineering Values
                             </h3>
                             <ul className="space-y-2.5" role="list">
-                                {resumeData.engineeringValues.map((item, idx) => (
-                                    <li
-                                        key={idx}
-                                        className="text-slate-300 text-sm flex items-start gap-2 leading-relaxed"
-                                    >
-                                        <span
-                                            className="text-cyan-400 mt-0.5 shrink-0"
-                                            aria-hidden="true"
+                                {resumeData.engineeringValues.map(
+                                    (item, idx) => (
+                                        <li
+                                            key={idx}
+                                            className="text-slate-300 text-sm flex items-start gap-2 leading-relaxed"
                                         >
-                                            ▸
-                                        </span>
-                                        {item.trim()}
-                                    </li>
-                                ))}
+                                            <span
+                                                className="text-cyan-400 mt-0.5 shrink-0"
+                                                aria-hidden="true"
+                                            >
+                                                ▸
+                                            </span>
+                                            {item.trim()}
+                                        </li>
+                                    ),
+                                )}
                             </ul>
                         </motion.div>
                     )}
