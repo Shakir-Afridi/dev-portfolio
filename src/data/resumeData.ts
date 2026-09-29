@@ -69,7 +69,7 @@ export const resumeData: ResumeData = {
         "We’d love to hear from you. Whether you have a question about services, pricing, or anything else — our team is ready to answer all your questions.",
     linkedin: "https://www.linkedin.com/in/shakir-ullah-201650/",
     summary:
-        "With over 8 years of hands-on experience in software engineering, I specialize in designing, developing, and scaling modern web applications that are performance-optimized, user-centric, and maintainable. My core stack includes ReactJS, Node.js, and TypeScript, with experience across the full product lifecycle. \n\nI’ve worked on enterprise-scale systems, customer-facing platforms, and internal tools, delivering high-quality solutions that improve business efficiency and user engagement.",
+        "With over 8 years of hands-on experience in software engineering, I specialize in designing, developing, and scaling modern web applications that are performance-optimized, user-centric, and maintainable. My core stack includes ReactJS, Node.js, NestJS, and TypeScript, with experience across the full product lifecycle. \n\nI’ve worked on enterprise-scale systems, customer-facing platforms, and internal tools, delivering high-quality solutions that improve business efficiency and user engagement.",
     technicalExpertize: [
         "Frontend: React.js, Redux, Angular, HTML5, CSS3, SCSS, Tailwind",
         "Backend: Node.js, Express.js, REST APIs, GraphQL",
@@ -338,6 +338,48 @@ export const resumeData: ResumeData = {
     ],
     projects: [
         {
+            title: "ReachBullet — Multi-Tenant SMS SaaS Platform",
+            company: "Independent Project",
+            period: "08/2026 – Present",
+            year: "2026",
+            summary:
+                "ReachBullet is a multi-tenant SMS SaaS platform for running A2P-compliant SMS marketing campaigns. Architected and built the platform end-to-end: a NestJS/TypeScript API backed by PostgreSQL and Prisma, and a React + TanStack Router frontend shipped as two independently deployable portals — a customer-facing app and a platform admin dashboard — from a single shared codebase. The platform integrates with Sendillo for SMS delivery and A2P brand/campaign registration and with Stripe for prepaid billing, with an append-only ledger for fully auditable, per-message billing.",
+            tech: [
+                "NestJS",
+                "TypeScript",
+                "PostgreSQL",
+                "Prisma",
+                "Stripe",
+                "BullMQ",
+                "Redis",
+                "React",
+                "TanStack Router",
+                "TanStack Query",
+                "Tailwind CSS",
+                "Radix UI",
+                "Docker",
+            ],
+            links: [
+                { name: "Website", link: "https://reachbullet.ai" },
+                {
+                    name: "Customer Portal",
+                    link: "https://app.reachbullet.ai",
+                },
+                { name: "Admin Portal", link: "https://admin.reachbullet.ai" },
+            ],
+            contributions: [
+                "Designed and built the NestJS/TypeScript backend API on PostgreSQL and Prisma, structured around bounded domain modules (auth, billing, campaigns, numbers, inbox, admin).",
+                "Implemented a dual-identity auth system (tenant JWTs vs. platform-staff JWTs) with role-based guards and a SUPERADMIN cross-tenant override.",
+                "Built the Sendillo integration layer — brand/campaign registration, inbound webhook processing, retry with backoff and a circuit breaker, HMAC signature verification — as the platform's single point of contact with the SMS provider, enforcing A2P compliance structurally rather than via a mapping table.",
+                "Designed an append-only billing ledger (Stripe-backed prepaid top-ups, per-SMS debits driven by delivery webhooks) so every charge is auditable down to the individual message.",
+                "Built the campaign engine: contacts/contact groups, STOP-list suppression enforced at send time, and fan-out of large campaigns into per-recipient delivery jobs without blocking the request cycle.",
+                "Built the React + TypeScript frontend (TanStack Router/Query, Tailwind CSS, Radix UI) shipping as two independently deployable portals — customer and admin — from one shared codebase, with build-time portal selection.",
+                "Set up CI/CD and Docker-based deployment for both the API and frontend builds.",
+            ],
+            outcome:
+                "Shipped a production multi-tenant SMS SaaS platform live at reachbullet.ai, with dedicated customer (app.reachbullet.ai) and admin (admin.reachbullet.ai) portals, supporting A2P-compliant campaign messaging and auditable usage-based billing.",
+        },
+        {
             title: "CLM - Customer Lifecycle Management (Onboarding Platform)",
             company: "RAKBANK",
             period: "09/2024 – Present",
@@ -375,7 +417,7 @@ export const resumeData: ResumeData = {
         {
             title: "Web Sales Solution (Multi-Tenant)",
             company: "Digitify",
-            period: "02/2022 – Present",
+            period: "02/2022 – 02/2024",
             year: "2022",
             summary:
                 "Designed and developed a multi-tenant web sales solution for Jysk Fynske Medier (JFM)—one of Denmark’s leading regional media groups. The platform supports multiple digital newspaper brands under JFM’s umbrella, enabling each title to maintain a distinct identity and user experience while sharing a unified codebase. \nThe solution dynamically applies brand-specific themes, styles, and configurations based on the deployment URL, allowing seamless customization for each title (e.g., news outlets, subscription portals).",

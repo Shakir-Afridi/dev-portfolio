@@ -249,6 +249,28 @@ export default function Projects() {
 
     return (
         <section id="projects" className="max-w-7xl mx-auto px-6 py-16">
+            <motion.h2
+                className="text-4xl font-bold text-cyan-400 mb-12 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+            >
+                Projects
+            </motion.h2>
+
+            <div
+                className={`grid gap-8 sm:grid-cols-2 lg:grid-cols-3 ${
+                    (resumeData?.openSourceProjects?.length ?? 0) > 0
+                        ? "mb-16"
+                        : ""
+                }`}
+            >
+                {resumeData.projects.map((p, i) => (
+                    <ProjectCard key={i} p={p} i={i} onSelect={handleSelect} />
+                ))}
+            </div>
+
             {(resumeData?.openSourceProjects?.length ?? 0) > 0 && (
                 <>
                     <motion.h2
@@ -260,7 +282,7 @@ export default function Projects() {
                     >
                         Open Source Projects
                     </motion.h2>
-                    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-16">
+                    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                         {resumeData.openSourceProjects?.map((p, i) => (
                             <ProjectCard
                                 key={i}
@@ -272,22 +294,6 @@ export default function Projects() {
                     </div>
                 </>
             )}
-
-            <motion.h2
-                className="text-4xl font-bold text-cyan-400 mb-12 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-            >
-                Projects
-            </motion.h2>
-
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {resumeData.projects.map((p, i) => (
-                    <ProjectCard key={i} p={p} i={i} onSelect={handleSelect} />
-                ))}
-            </div>
 
             <AnimatePresence>
                 {selectedProject && (
